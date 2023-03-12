@@ -1,29 +1,49 @@
-import React, { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
 import { useState } from 'react';
 
-function MyButton() {
-  const [count, setCount] = useState(0);
+export default function MyApp() {
+  const [resultText, setResultText] = useState('Waiting for rsult...');
 
-  function handleClick() {
-    setCount(count + 1);
-    window.mobileAgent.postMessage("Kamlesh Sangani");
-  }
-
-  return (
-    <button onClick={handleClick}>
-      Get Mobile Agent {count}
-    </button>
-  );
+    function handleMobileAgentClick() {
+      setResultText('New text');
+    }
+    
+    window.abBaaSGetMobileAgentCallBack = (response) => {
+        console.log(response);
+        setResultText(response);
+    };
+        
+    return (
+      <center>
+        <div>
+          <h1>React MiniApp</h1>
+            
+            <button onClick={() => window.BaaSJSBridge.abBaaSGetMobileAgent("dfadf")}>                 Get Mobile Agent
+            </button>
+            <br></br>
+            <br></br>
+            <br></br>
+            
+            <button onClick={() => window.BaaSJSBridge.abBaaSFetchAuthCode("dfadf")}>                 Get Auth Code
+            </button>
+            <br></br>
+            <br></br>
+            <br></br>
+            
+            <button onClick={() => window.BaaSJSBridge.abBaaSGetMobileAgent("dfadf")}>                 Select Photos
+            </button>
+            <br></br>
+            <br></br>
+            <br></br>
+            
+            <button onClick={() => window.BaaSJSBridge.abBaaSCloseScreen("dfadf")}>                 Verify Identity
+            </button>
+            <br></br>
+            <br></br>
+            <br></br>
+            
+          <p>{resultText}</p>
+        </div>
+      </center>
+    );
 }
 
-let App = function MyApp() {
-  return (
-    <div>
-      <h1>Flutter React MiniApp</h1>
-      <MyButton />
-    </div>
-  );
-}
-
-export default App;
