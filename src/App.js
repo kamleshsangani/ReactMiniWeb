@@ -29,7 +29,13 @@ export default function MyApp() {
             <br></br>
             <br></br>
             
-            <button onClick={() => window.BaaSJSBridge.abBaaSGetMobileAgent("dfadf")}>                 Select Photos
+            <button onClick={() => window.BaaSJSBridge.abBaaSSelectCameraPhoto("dfadf")}>                 Select Camera Photo
+            </button>
+            <br></br>
+            <br></br>
+            <br></br>
+            
+            <button onClick={() => window.BaaSJSBridge.abBaaSSelectGalleryPhoto("dfadf")}>                 Select Gallery Photo
             </button>
             <br></br>
             <br></br>
